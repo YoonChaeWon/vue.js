@@ -1,4 +1,3 @@
-
 var intro = new Vue({
     el: '#intro',
     data: {
@@ -14,14 +13,14 @@ var options = [
     {num: 5, value: '매우 높음'}
 ]
 
-// v-model을 이용해서 사용자가 선택한 옵션에 따라 value값을 html에 출력해줌
-var selected = new Vue({
-    el: '#select-importance',
-    data: {
-        selected: '보통',
-        options: options
-    }
-})
+// // v-model을 이용해서 사용자가 선택한 옵션에 따라 value값을 html에 출력해줌
+// var selected = new Vue({
+//     el: '#select-importance',
+//     data: {
+//         selected: '보통',
+//         options: options
+//     }
+// })
 
 Vue.component('todo-item', {
     template: '\
@@ -34,15 +33,18 @@ Vue.component('todo-item', {
             <button class="update"> Update </button></td>\
         </tr>\
         ',
-    props: ['todo', 'desc', 'importance', 'due']
-    // props: {
-    //     todo: String,
-    //     desc: String,
-    //     importance: Number,
-    //     due: {
-    //         // 유효성 검사 해주고자 하는데 Error 있음
-    //     }
-    // }
+    //props: ['todo', 'desc', 'importance', 'due']
+    props: {
+        todo: String,
+        desc: String,
+        importance: {
+            type: String,
+            required: true
+        },
+        due: {
+            type: String
+        }
+    }
 })
 
 //기본 list
@@ -61,6 +63,8 @@ var todolist = new Vue({
 
 })
 
+
+// addition / deletion / update component 생성
 var addition = new Vue({
     el:'#add-page',
     data: {
@@ -77,7 +81,7 @@ var addition = new Vue({
             var todo = {id: this.newId++, todo: this.todo, desc: this.desc, 
                         importance: this.importance, due: this.due}
             todolist.todos.push(todo)
-
+            consoloe.log(this.newId)
             this.todo=''
             this.desc=''
             this.importance =''
@@ -86,10 +90,27 @@ var addition = new Vue({
     }
 })
 
-var deletion = new Vue({
-    
-})
+var deletion = {
+    template:''
+};
 
-var update = new Vue({
+var update = {
+    template: ''
+};
 
-})
+// 경로에 따라 표시될 component 매칭
+var routes=[
+    { path: '/addition', component: addition },
+    { path: '/deletion', component: deletion },
+    { path: '/update', component: update }
+];
+
+// 라우터 생성
+var router = new VueRouter({
+    routes: routes
+});
+
+// 인스턴스 선언
+var app = new Vue({
+    router: router
+}).$mount('#bottom');
