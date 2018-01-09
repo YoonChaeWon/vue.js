@@ -1,20 +1,3 @@
-var options = [
-    {num: 1, value: '매우 낮음'},
-    {num: 2, value: '낮음'},
-    {num: 3, value: '보통'},
-    {num: 4, value: '높음'},
-    {num: 5, value: '매우 높음'}
-]
-
-// // v-model을 이용해서 사용자가 선택한 옵션에 따라 value값을 html에 출력해줌
-// var selected = new Vue({
-//     el: '#select-importance',
-//     data: {
-//         selected: '보통',
-//         options: options
-//     }
-// })
-
 Vue.component('todo-item', {
     template: '\
         <tr>\
@@ -40,6 +23,13 @@ Vue.component('todo-item', {
     }
 })
 
+Vue.component('header-message',{
+    template: '\
+    <div class="page-header"><h3>{{ message }} </h3></div>\
+    ',
+    props: ['message']
+})
+
 //기본 list
 var todolist = new Vue({
     el: '#todo-list',
@@ -53,7 +43,6 @@ var todolist = new Vue({
                 importance: '5', due: ''}
         ]
     },
-
 })
 
 
@@ -86,7 +75,7 @@ var addition = {
 }
 
 var deletion = {
-    template:''
+    template:'#delete-page'
 };
 
 var update = {

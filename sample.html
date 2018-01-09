@@ -99,7 +99,7 @@
 
     <template id="add-page">
         <div>
-            <div class="page-header"> <h3>{{header}}</h3> </div>
+                <header-message message="Todo List 작성해주세요"></header-message>
             <p id="i1">
                     <label for="todo"> 할 일: </label>
                     <input id="todo" v-model="todo" placeholder="할 일을 입력하세요" >
@@ -125,7 +125,10 @@
                 <button class="create" @click="addTodo">Add</button>
         </div>
     </template>
-
+    
+    <template id="delete-page">
+            <header-message message="삭제할 것을 선택"></header-message>
+    </template>
 
     <script type="text/JavaScript" src="sample.js"></script>
 </body>
