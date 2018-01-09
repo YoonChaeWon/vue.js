@@ -34,15 +34,15 @@ Vue.component('todo-item', {
             <button class="update"> Update </button></td>\
         </tr>\
         ',
-    //props: ['todo', 'desc', 'importance', 'due']
-    props: {
-        todo: String,
-        desc: String,
-        importance: Number,
-        due: {
-            // 유효성 검사 해주고자 하는데 Error 있음!!
-        }
-    }
+    props: ['todo', 'desc', 'importance', 'due']
+    // props: {
+    //     todo: String,
+    //     desc: String,
+    //     importance: Number,
+    //     due: {
+    //         // 유효성 검사 해주고자 하는데 Error 있음
+    //     }
+    // }
 })
 
 //기본 list
@@ -87,7 +87,7 @@ var addition = new Vue({
 })
 
 var deletion = new Vue({
-
+    
 })
 
 var update = new Vue({

@@ -31,7 +31,8 @@
         padding: 15px 32px;
         text-align: center;
         display: inline-block;
-        
+        position: relative;
+        left:10px
     }
     .delete{
         background-color: #337ab7;
@@ -68,9 +69,10 @@
     </style>
 </head>
 <body>
-    <div class="page-header" id="top">
-            <!-- Default panel contents -->
-        <h3> Todo List </h3>
+    <div id="top">
+        <div class="page-header">
+            <h3> Todo List </h3>
+        </div>
         <!-- Table -->
         <table class="table" id="todo-list">
             <thead>
@@ -86,7 +88,8 @@
                     v-bind:todo="item.todo"
                     v-bind:desc="item.desc"
                     v-bind:importance="item.importance"
-                    v-bind:due="item.due">
+                    v-bind:due="item.due"
+                    v-on:remove="todos.splice(index, 1)">
                 </tr>
             </tbody>
         </table>
