@@ -98,10 +98,19 @@
     </div>
 
     <div id="bottom">
-        <router-link> add </router-link>
-        <router-link> deletion </router-link>
-        <router-link> update </router-link>
+        <router-link to="/addition"> add </router-link>
+        <router-link to="/deletion"> deletion </router-link>
+        <router-link to="/update"> update </router-link>
+        <p>
+        <router-view></router-view>
+        </p>
     </div>
+
+    <template id="add-page2">
+        <div class="page-header">
+            <h3>{{header}}</h3>
+        </div>
+    </template>
     
     <div id="add-page"> 
         <div class="page-header" id="intro">

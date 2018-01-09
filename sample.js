@@ -65,30 +65,39 @@ var todolist = new Vue({
 
 
 // addition / deletion / update component 생성
-var addition = new Vue({
-    el:'#add-page',
-    data: {
-        todo:'',
-        desc:'',
-        importance:'',
-        due:'',
-        newId: function(){
-            return todolist.todos.length
+// var addition = new Vue({
+//     el:'#add-page',
+//     data: {
+//         todo:'',
+//         desc:'',
+//         importance:'',
+//         due:'',
+//         newId: function(){
+//             return todolist.todos.length
+//         }
+//     },
+//     methods: {
+//         addTodo: function(){
+//             var todo = {id: this.newId++, todo: this.todo, desc: this.desc, 
+//                         importance: this.importance, due: this.due}
+//             todolist.todos.push(todo)
+//             consoloe.log(this.newId)
+//             this.todo=''
+//             this.desc=''
+//             this.importance =''
+//             this.due=''
+//         }
+//     }
+// })
+
+var addition = {
+    data: function(){
+        return {
+            header: 'Todo list 작성해주세요.'
         }
     },
-    methods: {
-        addTodo: function(){
-            var todo = {id: this.newId++, todo: this.todo, desc: this.desc, 
-                        importance: this.importance, due: this.due}
-            todolist.todos.push(todo)
-            consoloe.log(this.newId)
-            this.todo=''
-            this.desc=''
-            this.importance =''
-            this.due=''
-        }
-    }
-})
+    template: '#add-page2',
+}
 
 var deletion = {
     template:''
