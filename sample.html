@@ -57,16 +57,7 @@
     }
     p#i2{
         position: relative;
-        top: -5%;
-        left: 400px;
-    }
-    p#i3{
-        position:relative;
-        top: -30%;
-    }
-    p#i4{
-        position:relative;
-        top: -30%;
+        left: 10px;
     }
     </style>
 </head>
@@ -107,39 +98,34 @@
     </div>
 
     <template id="add-page2">
-        <div class="page-header">
-            <h3>{{header}}</h3>
+        <div>
+            <div class="page-header"> <h3>{{header}}</h3> </div>
+            <p id="i1">
+                    <label for="todo"> 할 일: </label>
+                    <input id="todo" v-model="todo" placeholder="할 일을 입력하세요" >
+                </p>
+                <p id="i2">
+                    <label for="desc"> 세부내용: </label><br>
+                    <textarea id="desc" v-model="desc" cols="40" rows="10"></textarea>
+                </p>
+                <p id="i3">
+                    <label for="importance"> 중요도: </label>
+                    <select v-model="importance">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </p>
+                <p id="i4">
+                    <label for="due"> 기한: </label>
+                    <input type="date" v-model="due" id="userdue" name="userdue" value="">
+                </p>
+                <button class="create" @click="addTodo">Add</button>
         </div>
     </template>
-    
-    <div id="add-page"> 
-        <div class="page-header" id="intro">
-            <h3> {{ header }} </h3>
-        </div>
-        <p id="i1">
-            <label for="todo" > 할 일: </label>
-            <input id="todo" v-model="todo" placeholder="할 일을 입력하세요" >
-        </p>
-        <p id="i2">
-            <label for="desc" > 세부내용: </label><br>
-            <textarea id="desc" v-model="desc" cols="40" rows="10"></textarea>
-        </p>
-        <p id="i3">
-            <label for="importance"> 중요도: </label>
-            <select v-model="importance">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </p>
-        <p id="i4">
-            <label for="due"> 기한: </label>
-            <input type="date" v-model="due" id="userdue" name="userdue" value="">
-        </p>
-        <button class="create" @click="addTodo"> Add </button>
-    </div>
+
 
     <script type="text/JavaScript" src="sample.js"></script>
 </body>
