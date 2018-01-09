@@ -82,7 +82,7 @@ var addition = {
             this.due=''
         }
     },
-    template: '#add-page2',
+    template: '#add-page',
 }
 
 var deletion = {
