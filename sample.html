@@ -69,6 +69,7 @@
         <!-- Table -->
         <table class="table" id="todo-list">
             <thead>
+                <th> </th>
                 <th>Todo</th>
                 <th>Description</th>
                 <th>Importance</th>
@@ -78,6 +79,7 @@
                 <tr is="todo-item"
                     v-for="item in todos" 
                     v-bind:key="item.id"
+                    v-bind:id="item.id"
                     v-bind:todo="item.todo"
                     v-bind:desc="item.desc"
                     v-bind:importance="item.importance"
@@ -89,9 +91,9 @@
     </div>
 
     <div id="bottom">
-        <router-link to="/addition"> add </router-link>
-        <router-link to="/deletion"> deletion </router-link>
-        <router-link to="/update"> update </router-link>
+        <router-link to="/addition"> <button> add </button></router-link>
+        <router-link to="/deletion"> <button> deletion </button></router-link>
+        <router-link to="/update"> <button > update </button></router-link>
         <p>
         <router-view></router-view>
         </p>
@@ -99,35 +101,40 @@
 
     <template id="add-page">
         <div>
-                <header-message message="Todo List 작성해주세요"></header-message>
+            <header-message message="Todo List 작성해주세요"></header-message>
             <p id="i1">
-                    <label for="todo"> 할 일: </label>
-                    <input id="todo" v-model="todo" placeholder="할 일을 입력하세요" >
-                </p>
-                <p id="i2">
-                    <label for="desc"> 세부내용: </label><br>
-                    <textarea id="desc" v-model="desc" cols="40" rows="10"></textarea>
-                </p>
-                <p id="i3">
-                    <label for="importance"> 중요도: </label>
-                    <select v-model="importance">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </p>
-                <p id="i4">
-                    <label for="due"> 기한: </label>
-                    <input type="date" v-model="due" id="userdue" name="userdue" value="">
-                </p>
-                <button class="create" @click="addTodo">Add</button>
+                <label for="todo"> 할 일: </label>
+                <input id="todo" v-model="todo" placeholder="할 일을 입력하세요" >
+            </p>
+            <p id="i2">
+                <label for="desc"> 세부내용: </label><br>
+                <textarea id="desc" v-model="desc" cols="40" rows="10"></textarea>
+            </p>
+            <p id="i3">
+                <label for="importance"> 중요도: </label>
+                <select v-model="importance">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </p>
+            <p id="i4">
+                <label for="due"> 기한: </label>
+                <input type="date" v-model="due" id="userdue" name="userdue" value="">
+            </p>
+            <button class="create" @click="addTodo">Add</button>
         </div>
     </template>
     
     <template id="delete-page">
-            <header-message message="삭제할 것을 선택"></header-message>
+        <header-message message="삭제할 것을 선택"></header-message>
+
+    </template>
+
+    <template id="update-page">
+        <header-message message="update할 사항 수정"></header-message>
     </template>
 
     <script type="text/JavaScript" src="sample.js"></script>

@@ -1,6 +1,38 @@
-Vue.component('todo-item', {
+// Vue.component('todo-item', {
+//     template: '\
+//         <tr>\
+//             <td><input type="checkbox" v-if="checkmode"></td>\
+//             <td>{{ todo }}</td>\
+//             <td>{{ desc }}</td>\
+//             <td>{{ importance }}</td>\
+//             <td>{{ due }}</td>\
+//             <td><button class="delete" v-on:click="$emit(\'remove\')">Delete</button>\
+//             <button class="update"> Update </button></td>\
+//         </tr>\
+//         ',
+//     props: ['todo', 'desc', 'importance', 'due']
+//     // props: {
+//     //     todo: String,
+//     //     desc: String,
+//     //     importance: {
+//     //         type: String,
+//     //         validator: function(value) {
+//     //             if(value.length < 1){
+//     //                 alert('반드시 선택해주세요~~')
+//     //             }
+//     //             return value.length <1
+//     //         }
+//     //     },
+//     //     due: {
+//     //         type: String
+//     //     }
+//     // }
+// })
+
+var todoItem = {
     template: '\
         <tr>\
+            <td>{{ id }}</td>\
             <td>{{ todo }}</td>\
             <td>{{ desc }}</td>\
             <td>{{ importance }}</td>\
@@ -9,17 +41,23 @@ Vue.component('todo-item', {
             <button class="update"> Update </button></td>\
         </tr>\
         ',
-    //props: ['todo', 'desc', 'importance', 'due']
-    props: {
-        todo: String,
-        desc: String,
-        importance: {
-            type: String,
-            required: true
-        },
-        due: {
-            type: String
-        }
+    props: ['id', 'todo', 'desc', 'importance', 'due']
+}
+//기본 list
+var todolist = new Vue({
+    el: '#todo-list',
+    data: {
+        todos: [
+            {id: 1, todo: 'Todo1', desc: 'Todo1입니다.', 
+                importance: '1', due: ''},
+            {id: 2, todo: 'Todo2', desc: 'Todo2입니다.', 
+                importance: '2', due: '2018-01-30'},
+            {id: 3, todo: 'Todo3', desc: 'Todo3입니다.', 
+                importance: '5', due: ''}
+        ]
+    },
+    components: {
+        'todo-item': todoItem
     }
 })
 
@@ -30,21 +68,7 @@ Vue.component('header-message',{
     props: ['message']
 })
 
-//기본 list
-var todolist = new Vue({
-    el: '#todo-list',
-    data: {
-        todos: [
-            {id: 1, todo: 'Todo1', desc: 'Todo1입니다.', 
-            importance: '1', due: ''},
-            {id: 2, todo: 'Todo2', desc: 'Todo2입니다.', 
-                importance: '2', due: '2018-01-30'},
-            {id: 3, todo: 'Todo3', desc: 'Todo3입니다.', 
-                importance: '5', due: ''}
-        ]
-    },
-})
-
+var len = todolist.todos.length
 
 // addition / deletion / update component 생성
 var addition = {
@@ -55,16 +79,15 @@ var addition = {
             desc: '',
             importance: '',
             due: '',
-            newId: function(){
-                return todolist.todos.length
-            }
+            newId: len+1
         }
     },
     methods:{
         addTodo:function(){
-            var todo = {id: this.newId++, todo: this.todo, desc: this.desc,
-                        importance: this.importance, due: this.due}
-            todolist.todos.push(todo)
+            console.log('this.newId', this.newId)
+            todolist.todos.push({id: this.newId++, todo: this.todo, desc: this.desc,
+                importance: this.importance, due: this.due})
+            len++
             this.todo=''
             this.desc=''
             this.importance=''
@@ -75,11 +98,16 @@ var addition = {
 }
 
 var deletion = {
+    methods: {
+        deleteTodo: function(){
+            
+        }
+    },
     template:'#delete-page'
 };
 
 var update = {
-    template: ''
+    template: '#update-page'
 };
 
 // 경로에 따라 표시될 component 매칭
