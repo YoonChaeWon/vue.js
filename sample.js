@@ -1,7 +1,6 @@
 // Vue.component('todo-item', {
 //     template: '\
 //         <tr>\
-//             <td><input type="checkbox" v-if="checkmode"></td>\
 //             <td>{{ todo }}</td>\
 //             <td>{{ desc }}</td>\
 //             <td>{{ importance }}</td>\
@@ -11,23 +10,25 @@
 //         </tr>\
 //         ',
 //     props: ['todo', 'desc', 'importance', 'due']
-//     // props: {
-//     //     todo: String,
-//     //     desc: String,
-//     //     importance: {
-//     //         type: String,
-//     //         validator: function(value) {
-//     //             if(value.length < 1){
-//     //                 alert('반드시 선택해주세요~~')
-//     //             }
-//     //             return value.length <1
-//     //         }
-//     //     },
-//     //     due: {
-//     //         type: String
-//     //     }
-//     // }
+// //     props: {
+// //         todo: String,
+// //         desc: String,
+// //         importance: {
+// //             type: String,
+// //             validator: function(value) {
+// //                 if(value.length < 1){
+// //                     alert('반드시 선택해주세요~~')
+// //                 }
+// //                 return value.length <1
+// //             }
+// //         },
+// //         due: {
+// //             type: String
+// //         }
+// //     }
 // })
+
+var eventhub = new Vue()
 
 var todoItem = {
     template: '\
@@ -37,8 +38,7 @@ var todoItem = {
             <td>{{ desc }}</td>\
             <td>{{ importance }}</td>\
             <td>{{ due }}</td>\
-            <td><button class="delete" v-on:click="$emit(\'remove\')">Delete</button>\
-            <button class="update"> Update </button></td>\
+            <td><button class="delete" v-on:click="$emit(\'remove\')">Delete</button></td>\
         </tr>\
         ',
     props: ['id', 'todo', 'desc', 'importance', 'due']
@@ -84,9 +84,11 @@ var addition = {
     },
     methods:{
         addTodo:function(){
-            console.log('this.newId', this.newId)
-            todolist.todos.push({id: this.newId++, todo: this.todo, desc: this.desc,
-                importance: this.importance, due: this.due})
+            console.log('newid', this.newId)
+            todolist.todos.push(
+                {id: this.newId++, todo: this.todo, desc: this.desc,
+                importance: this.importance, due: this.due}
+            )
             len++
             this.todo=''
             this.desc=''
@@ -98,12 +100,7 @@ var addition = {
 }
 
 var deletion = {
-    methods: {
-        deleteTodo: function(){
-            
-        }
-    },
-    template:'#delete-page'
+    template:'#delete-page',
 };
 
 var update = {

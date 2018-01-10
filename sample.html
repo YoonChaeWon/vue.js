@@ -77,7 +77,7 @@
             </thead>
             <tbody>
                 <tr is="todo-item"
-                    v-for="item in todos" 
+                    v-for="(item, index) in todos" 
                     v-bind:key="item.id"
                     v-bind:id="item.id"
                     v-bind:todo="item.todo"
