@@ -1,0 +1,17 @@
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<div id="app">
+    <nav class="my-nav">
+        <ul class="">
+            <li class="nav-item">
+                <router-link to="/router1" class="nav-class">router#1</router-link>
+                <router-link to="/router2" class="nav-class">router#2</router-link>
+            </li>
+        </ul>
+    </nav>
+    <div class="my-main">
+        <router-view></router-view>
+    </div>
+
+    <script src="main.js"></script>
+</div>
